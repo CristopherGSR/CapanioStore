@@ -1,0 +1,6 @@
+ADMINISTRADOR
+**********************************
+SUPERUSUARIO:
+
+- USUARIO: admin
+- PASSWORD: unam123
