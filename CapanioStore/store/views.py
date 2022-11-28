@@ -19,6 +19,9 @@ from django.db.models import Q
 
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.core.mail import EmailMessage
+from django.template.loader import render_to_string
+from django.conf import settings
 # Create your views here.
 
 def store_view(request):
@@ -38,10 +41,27 @@ def contact_us(request):
 		nombre = request.POST["nombre"]
 		correo = request.POST["correo"]
 		celular = request.POST["celular"]
+
+		template = render_to_string('email_template.html',{
+			'nombre':nombre,
+			'correo':correo,
+			'celular':celular
+		})
+		email=EmailMessage("Mensaje de app Django",
+            template, 
+            settings.EMAIL_HOST_USER,
+            ["contact.restaurantolivo@gmail.com"])
+		email.fail_silently = False
+		email.send()
+
 		obj = Contactanos(nombre=nombre, correo=correo,numero_cel=celular)
 		obj.save()
-		context ={'productos':productos,'carritoItems':carritoItems}
+		
+		messages.success(request,'Se ha enviado tu correo.')
+		mensaje=("Se ha enviado correctamente al correo")
+		context ={'productos':productos,'carritoItems':carritoItems,'mensaje':mensaje}
 		return render(request,'contact_us.html',context)
+		
 
 
 	context ={'productos':productos,'carritoItems':carritoItems}
@@ -79,9 +99,30 @@ def reservation(request):
 		comida_pref = request.POST["comida_pref"]
 		ocasion = request.POST["ocasion"]
 
+		template = render_to_string('email_template2.html',{
+			'nombre':nombre,
+			'correo':correo,
+			'celular':celular,
+			'num_personas':num_personas,
+			'fecha':fecha,
+			'hora':hora,
+			'comida_pref':comida_pref,
+			'ocasion':ocasion
+		})
+		email=EmailMessage("Mensaje de app Django",
+            template, 
+            settings.EMAIL_HOST_USER,
+            ["contact.restaurantolivo@gmail.com"])
+		email.fail_silently = False
+		email.send()
+
 		obj = Reservacion(nombre=nombre, correo=correo,numero_cel=celular,num_personas=num_personas,fecha=fecha,hora=hora,comida_pref=comida_pref, ocasion= ocasion)
 		obj.save()
-		context ={'productos':productos,'carritoItems':carritoItems}
+
+		messages.success(request,'Se ha enviado tu correo.')
+		mensaje=("Se ha enviado correctamente al correo")
+
+		context ={'productos':productos,'carritoItems':carritoItems,'mensaje':mensaje}
 		return render(request, 'reservation.html', context)
 	
 	context ={'productos':productos,'carritoItems':carritoItems}

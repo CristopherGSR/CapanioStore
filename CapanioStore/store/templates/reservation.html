@@ -158,6 +158,14 @@
                         <h4 class="form-title">BOOKING FORM</h4>
                         <p>PLEASE FILL OUT ALL REQUIRED* FIELDS. THANKS!</p>
 
+                        {% if messages %}
+                        {%for message in messages%}
+                    <div class="alert alert-success" role="alert">
+                        {{mensaje}}
+                      </div>
+                      {%endfor%}
+                      {%endif%}
+
                         <form action="" method="post">
                             {% csrf_token %}
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -264,8 +272,8 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#">
-                                            <div class="social-circle-border"><i class="fa fa-twitter"></i></div>
+                                        <a href="https://wa.me/51929787410?text=hola%20Restaurant%20El%20Olivo">
+                                            <div class="social-circle-border"><i class="fa fa-whatsapp"></i></div>
                                         </a>
                                     </li>
                                     <li>

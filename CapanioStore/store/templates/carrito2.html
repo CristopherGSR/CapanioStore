@@ -24,7 +24,7 @@
             <br>
             <div class="box-element">
                 <div class="cart-row">
-                    <div style="flex: 2"></div>
+                    <div style="flex: 2"><strong>Foto</strong></div>
                     <div style="flex: 2"><strong>Articulos</strong></div>
                     <div style="flex: 1"><strong>Precio</strong></div>
                     <div style="flex: 1"><strong>Cantidad</strong></div>
@@ -38,12 +38,12 @@
 					<div style="flex:1">
 						<p class="quantity">{{articulo.cantidad}}</p>
 						<div class="quantity">
-							<img data-producto="{{articulo.producto.id_producto}}" data-action="add" class="chg-quantity update-cart" src="{% static  'images/arriba.png' %}">
+							<img data-producto="{{articulo.producto.id_producto}}" data-action="add" class="chg-quantity update-cart" src="{% static  'images/flecha_abajo_cart_buy.png' %}">
 					
-							<img data-producto="{{articulo.producto.id_producto}}" data-action="remove" class="chg-quantity update-cart" src="{% static  'images/abajo.png' %}">
+							<img data-producto="{{articulo.producto.id_producto}}" data-action="remove" class="chg-quantity update-cart" src="{% static  'images/flecha_arriba_cart_buy.png' %}">
 						</div>
 					</div>
-					<div style="flex:1"><p></p></div>
+					<div style="flex:1"><p>${{articulo.get_total|floatformat:2}}</p></div>
 				</div>
                 {% endfor %}
 

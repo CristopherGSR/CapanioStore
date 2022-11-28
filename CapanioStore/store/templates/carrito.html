@@ -25,7 +25,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href='{% static "css/bootstrap.min.css" %}'>
     <!-- Site CSS -->
-    <link rel="stylesheet" href='{% static "css/style_car_shop2.css" %}'>
+    <link rel="stylesheet" href='{% static "css/style_car_shop3.css" %}'>
     <!-- Responsive CSS -->
     <link rel="stylesheet" href='{% static "css/responsive.css" %}'>
 
@@ -126,8 +126,8 @@
                                     
                                     <li  class="active"><a href="{% url 'carrito' %}"><div class="fas fa-shopping-cart fa-lg" id="cart-btn"></div></a></li>
                                     <li><a href="{% url 'login' %}"><img  id="user-icon" src="{% static 'images/male_user.png' %}"></a></li>
-                                    <li><span id="nav" class="nav">{{request.user}}</span></li>
-                                    <li><span id="logout" class="nav"> <a href="{% url 'logout' %}">Logout</a> </span></li>
+                                    <li><a href="{% url 'perfil' %}"><span id="nav" class="nav">{{request.user}}</span></a></li>
+                                    <li><a href="{% url 'logout' %}"><span id="logout"> Logout</a> </span></li>
                                     <p id="cart-total" class="nav">{{carritoItems}}</p>
                                     <br>
                                     
