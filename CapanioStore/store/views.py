@@ -4,13 +4,11 @@ from django.http import JsonResponse
 import json
 import datetime
 
-from django.shortcuts import get_object_or_404
 from django.contrib.auth.forms import UserCreationForm
 from .forms import CreateUserForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import Group
 from django.contrib import messages
-from django.contrib.auth.models import User
 
 from django.contrib.auth.decorators import login_required
 from .models import *
@@ -18,7 +16,6 @@ from .utils import cookieCart, cartData, guestOrden
 from django.db.models import Q
 
 from django.http import HttpResponse
-from django.views.decorators.csrf import csrf_exempt
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
 from django.conf import settings
@@ -155,7 +152,7 @@ def pago(request):
 	articulos = data['articulos']
 
 	context = {'articulos': articulos, 'pedido': pedido, 'carritoItems':carritoItems}
-	return render(request, 'store/pago.html', context)
+	return render(request, 'pago.html', context)
 
 def perfil(request):
 	data = cartData(request)
@@ -256,15 +253,6 @@ def procesoPedido(request):
 		pedido.estado = True
 	pedido.save()
 
-	if pedido.shipping == True:
-		Direccion.objects.create(
-		    cliente=cliente,
-		    pedido=pedido,
-		    direccion=data['shipping']['direccion'],
-		    ciudad=data['shipping']['ciudad'],
-		    departamento=data['shipping']['departamento'],
-		    codigoPostal=data['shipping']['codigoPostal'],
-			numIdentificacionFiscal=data['shipping']['numIdentificacionFiscal'],
-		)
+	
 
 	return JsonResponse('Payment submitted', safe=False)

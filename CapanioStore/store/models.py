@@ -28,6 +28,7 @@ class Producto(models.Model):
     categoria = models.ForeignKey(Categoria, null=False, blank=False, on_delete=models.CASCADE)
     precio = models.DecimalField(max_digits=7, decimal_places=2)
     descripcion = models.CharField(max_length=200)
+    digital = models.BooleanField(default=False, null=True, blank=False)
     imagen = models.ImageField(null=True, blank=True)
     def __str__(self):
         return self.nombre

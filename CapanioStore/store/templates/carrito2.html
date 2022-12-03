@@ -15,7 +15,7 @@
                         <th><h5>Articulos: <strong>{{pedido.get_carrito_articulos}}</strong></h5></th>
                         <th><h5>Total: <strong>${{pedido.get_carrito_total|floatformat:2}}</strong></h5></th>
                         <th>
-                            <a style="float: right; margin: 5px;" class="btn btn-success" href="{% url 'Index'%}">Pago</a>
+                            <a style="float: right; margin: 5px;" class="btn btn-success" href="{% url 'pago'%}">Pago</a>
                         </th>
                     </tr>
                 </table>
